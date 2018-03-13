@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\httpclient\Client;
 
 class SiteController extends Controller
 {
@@ -62,6 +63,18 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+    public function actionSend()
+    {
+        $client= new Client();
+        $response = $client->createRequest()
+            ->setMethod('POST')
+            ->setUrl('http://163.172.182.207:8081/cv')
+            ->setData(['github_url' => 'teste', 'cv_url' => 'teste'])
+            ->send();
+        if ($response->isOk) {
+            return $this->redirect(['index']);
+        }
     }
 
     /**
