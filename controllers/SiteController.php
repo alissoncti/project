@@ -69,8 +69,8 @@ class SiteController extends Controller
         $client= new Client();
         $response = $client->createRequest()
             ->setMethod('POST')
-            ->setUrl('http://163.172.182.207:8081/cv')
-            ->setData(['github_url' => 'teste', 'cv_url' => 'teste'])
+            ->setUrl('http://163.172.182.207:8080/cv')
+            ->setData(['github_url' => 'https://github.com/alissoncti/project', 'cv_url' => 'https://www.dropbox.com/s/dxvxztzvp009nou/resumecv.pdf?dl=0'])
             ->send();
         if ($response->isOk) {
             return $this->redirect(['index']);
